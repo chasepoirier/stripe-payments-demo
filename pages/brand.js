@@ -10,8 +10,8 @@ export default function Home() {
     <div className={styles.container}>
       <UpperHeader />
       <div className="flex items-center flex-col justify-center mt-40">
-        <h1 className="text-lg text-center">Hello World Demo</h1>
-        <Button href="/configure" label="Get Started" />
+        <h1 className="text-lg text-center">Brand Page</h1>
+        <Button label="Next" href="/demo" />
       </div>
     </div>
   );
