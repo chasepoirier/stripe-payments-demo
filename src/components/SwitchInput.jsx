@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import { Switch } from "@headlessui/react";
+import { classNames } from "../helpers";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-const SwitchInput = ({ defaultEnabled, onChange, label }) => {
+const SwitchInput = ({ defaultEnabled, onChange, label, className }) => {
   const [enabled, setEnabled] = useState(defaultEnabled);
 
   useEffect(() => {
@@ -13,8 +10,13 @@ const SwitchInput = ({ defaultEnabled, onChange, label }) => {
   }, [enabled]);
 
   return (
-    <div className="flex-row inline-flex align-middle justify-between">
-      <div className="text-gray-500">{label}</div>
+    <div
+      className={classNames(
+        "flex-row flex items-center justify-between min-w-fit gap-4",
+        className
+      )}
+    >
+      <div className="text-gray-500 text-sm font-light">{label}</div>
       <Switch
         checked={enabled}
         onChange={setEnabled}

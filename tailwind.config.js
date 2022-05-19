@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       colors: {
         blue: "#5469D4",
+        "blue-light": "#EEF0FB",
       },
       fontFamily: {
         sans: ["SF UI Display", "sans-serif"],

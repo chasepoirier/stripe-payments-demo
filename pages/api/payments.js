@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         },
       });
 
-      res.status(200).json({ paymentIntent });
+      res.status(200).json({ clientSecret: paymentIntent.client_secret });
       break;
     default:
       res.setHeader("Allow", ["POST"]);
