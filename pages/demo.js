@@ -15,8 +15,8 @@ export default function Demo() {
         <UpperHeader />
         <LowerHeader label="Try it out" stepNum={3} hideBtn></LowerHeader>
       </Header>
-      <div className="flex-1 bg-gray-100 flex justify-center items-center">
-        <DemoScreen />
+      <div className="flex-1 bg-gray-100 flex justify-center py-12">
+        <DemoScreen fullScreen />
       </div>
     </div>
   );

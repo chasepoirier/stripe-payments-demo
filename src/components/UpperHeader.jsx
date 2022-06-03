@@ -3,7 +3,7 @@ import { DOCS_LINK } from "../constants";
 
 const UpperHeader = () => {
   return (
-    <div className="flex flex-row justify-between items-center mt-5">
+    <div className="flex flex-row justify-between items-center pt-5">
       <img className="w-[70px] object-contain" src="/stripe-logo.svg" alt="" />
       <a
         href={DOCS_LINK}

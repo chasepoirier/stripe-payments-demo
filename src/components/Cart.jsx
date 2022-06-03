@@ -1,6 +1,8 @@
 import React from "react";
 import { formatDollars } from "../helpers";
+import useTheme from "../hooks/useTheme";
 import CartItem from "./CartItem";
+import PromoCode from "./PromoCode";
 
 const ITEMS = [
   {
@@ -24,6 +26,7 @@ const TAX_RATE = 0.0275;
 const Cart = () => {
   const [items, setItems] = React.useState([]);
 
+  const [theme] = useTheme();
   const [loading, setLoading] = React.useState(true);
 
   const fetchItems = async () => {
@@ -76,6 +79,7 @@ const Cart = () => {
         <div className="text-sm">Tax Estimate</div>
         <div className="text-sm font-light">{formatDollars(tax)}</div>
       </div>
+      {theme.promoCode ? <PromoCode readOnly /> : null}
       <div className="h-[1px] w-full bg-gray-200 my-6" />
       <div className="my-1 flex justify-between items-center mb-32">
         <div className="text-sm">Total</div>

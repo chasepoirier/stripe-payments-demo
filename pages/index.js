@@ -7,7 +7,7 @@ import UpperHeader from "../src/components/UpperHeader";
 
 export default function Home() {
   return (
-    <div className="h-screen overflow-hidden relative">
+    <div className="h-screen relative">
       <Header>
         <UpperHeader />
       </Header>
@@ -25,7 +25,12 @@ export default function Home() {
             objectPosition="top"
           />
         </div>
-        <div className="absolute top-[450px] w-full left-0 right-0 bg-gray-50 h-screen -z-10" />
+        <div
+          style={{
+            height: "calc(100vh - 450px)",
+          }}
+          className="absolute top-[450px] w-full left-0 right-0 bg-gray-50 -z-10"
+        />
       </div>
     </div>
   );

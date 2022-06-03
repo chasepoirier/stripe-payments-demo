@@ -20,8 +20,20 @@ const ThemeInput = ({ dark, onChange, className }) => {
       <div className="text-gray-500 text-sm font-light">Theme</div>
 
       <div className="flex items-center gap-2">
-        <div className="w-7 h-7 rounded-full border-2 border-gray-300 cursor-pointer bg-white" />
-        <div className="w-7 h-7 rounded-full border-2 border-gray-300 cursor-pointer bg-gray-800" />
+        <div
+          onClick={() => setDarkMode(false)}
+          className={classNames(
+            "w-7 h-7 rounded-full border-2 cursor-pointer bg-white transition-all",
+            !darkMode ? "border-blue" : "border-gray-300"
+          )}
+        />
+        <div
+          onClick={() => setDarkMode(true)}
+          className={classNames(
+            "w-7 h-7 rounded-full border-2 cursor-pointer bg-slate-900 transition-all",
+            darkMode ? "border-blue" : "border-gray-300"
+          )}
+        />
       </div>
     </div>
   );
