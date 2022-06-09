@@ -1,8 +1,8 @@
-export const createPaymentIntent = async () => {
+export const createOrder = async (line_items) => {
   const result = await fetch("/api/payments", {
     method: "POST",
-    body: JSON.stringify({}),
+    body: JSON.stringify({ line_items }),
   }).then((res) => res.json());
 
-  return result.clientSecret;
+  return result;
 };

@@ -3,69 +3,89 @@ import { THEME } from "../constants";
 import { classNames } from "../helpers";
 import useTheme from "../hooks/useTheme";
 import Button from "./Button";
+import PaymentWrapper from "./PaymentWrapper";
 
-const PaymentBuilder = () => {
+const WireframeBlocks = ({ isDark }) => (
+  <>
+    <div className="flex justify-between gap-2 h-12">
+      <div
+        className={classNames(
+          "rounded flex-1",
+          isDark ? "bg-slate-700" : "bg-gray-200"
+        )}
+      />
+      <div
+        className={classNames(
+          "rounded flex-1",
+          isDark ? "bg-slate-700" : "bg-gray-200"
+        )}
+      />
+      <div
+        className={classNames(
+          "rounded flex-1",
+          isDark ? "bg-slate-700" : "bg-gray-200"
+        )}
+      />
+    </div>
+    <div
+      className={classNames(
+        "rounded-sm mt-6 mb-2 w-12 h-3",
+        isDark ? "bg-slate-700" : "bg-gray-200"
+      )}
+    />
+    <div
+      className={classNames(
+        "rounded-sm mb-2 w-full h-10",
+        isDark ? "bg-slate-700" : "bg-gray-200"
+      )}
+    />
+    <div
+      className={classNames(
+        "rounded-sm mt-6 mb-2 w-12 h-3",
+        isDark ? "bg-slate-700" : "bg-gray-200"
+      )}
+    />
+    <div
+      className={classNames(
+        "rounded-sm mb-2 w-full h-10",
+        isDark ? "bg-slate-700" : "bg-gray-200"
+      )}
+    />
+    <div
+      className={classNames(
+        "rounded-sm mt-6 mb-2 w-12 h-3",
+        isDark ? "bg-slate-700" : "bg-gray-200"
+      )}
+    />
+    <div
+      className={classNames(
+        "rounded-sm mb-2 w-full h-10",
+        isDark ? "bg-slate-700" : "bg-gray-200"
+      )}
+    />
+  </>
+);
+
+const PaymentBuilder = ({ fullScreen }) => {
   const [theme] = useTheme();
   const isDark = theme.scheme === THEME.DARK;
-  return (
-    <div className="mt-8">
-      <div className="flex justify-between gap-2 h-12">
-        <div
-          className={classNames(
-            "rounded flex-1",
-            isDark ? "bg-slate-700" : "bg-gray-200"
-          )}
-        />
-        <div
-          className={classNames(
-            "rounded flex-1",
-            isDark ? "bg-slate-700" : "bg-gray-200"
-          )}
-        />
-        <div
-          className={classNames(
-            "rounded flex-1",
-            isDark ? "bg-slate-700" : "bg-gray-200"
-          )}
+
+  if (!fullScreen) {
+    return (
+      <div className="mt-8">
+        <WireframeBlocks isDark={isDark} />
+        <Button
+          className="mt-8 text-sm py-3 w-full"
+          label="Pay Now"
+          style={{ backgroundColor: theme.primaryColor }}
         />
       </div>
-      <div
-        className={classNames(
-          "rounded-sm mt-6 mb-2 w-12 h-3",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-      <div
-        className={classNames(
-          "rounded-sm mb-2 w-full h-10",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-      <div
-        className={classNames(
-          "rounded-sm mt-6 mb-2 w-12 h-3",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-      <div
-        className={classNames(
-          "rounded-sm mb-2 w-full h-10",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-      <div
-        className={classNames(
-          "rounded-sm mt-6 mb-2 w-12 h-3",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-      <div
-        className={classNames(
-          "rounded-sm mb-2 w-full h-10",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-      <Button className="mt-8 bg-gray-700 text-sm py-3" label="Pay Now" />
+    );
+  }
+
+  return (
+    <div className="mt-8">
+      <PaymentWrapper />
     </div>
   );
 };

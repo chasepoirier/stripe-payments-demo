@@ -16,8 +16,8 @@ const DemoScreen = ({ fullScreen }) => {
   return (
     <div
       className={classNames(
-        "w-[95%] shadow-lg bg-white rounded-lg transition-colors my-12",
-        !fullScreen && "max-w-5xl h-full",
+        "w-[95%] shadow-lg bg-white rounded-lg transition-colors my-2 max-w-7xl",
+        !fullScreen && "max-w-5xl h-full my-12",
         isDark ? "bg-slate-900" : "bg-white"
       )}
     >
@@ -75,10 +75,10 @@ const DemoScreen = ({ fullScreen }) => {
           )}
         >
           <div className="flex items-center gap-3">
-            <InputLogo />
-            <InputName />
+            <InputLogo readOnly={fullScreen} />
+            <InputName readOnly={fullScreen} />
           </div>
-          <PaymentBuilder />
+          <PaymentBuilder fullScreen={fullScreen} />
         </div>
         <div
           className={classNames(
@@ -86,7 +86,7 @@ const DemoScreen = ({ fullScreen }) => {
             isDark ? "bg-slate-700" : "bg-gray-50"
           )}
         >
-          <Cart />
+          <Cart readOnly={fullScreen} />
         </div>
       </div>
     </div>
