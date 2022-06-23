@@ -31,10 +31,10 @@ const ConfigureOptions = () => {
         label="Phone Number"
       />
       <SwitchInput
-        enabled={theme.saveCard}
-        onChange={(saveCard) => updateTheme({ saveCard })}
+        enabled={theme.wallets}
+        onChange={(wallets) => updateTheme({ wallets })}
         className="w-[28%]"
-        label="Save Card"
+        label="Wallets"
       />
     </div>
   );

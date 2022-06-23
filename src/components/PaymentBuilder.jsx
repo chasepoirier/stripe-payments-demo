@@ -5,40 +5,47 @@ import useTheme from "../hooks/useTheme";
 import Button from "./Button";
 import PaymentWrapper from "./PaymentWrapper";
 
-const WireframeBlocks = ({ isDark }) => (
+const WireframeBlocks = ({ isDark, wallets, shipping }) => (
   <>
-    <div className="flex justify-between gap-2 h-12">
-      <div
-        className={classNames(
-          "rounded flex-1",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-      <div
-        className={classNames(
-          "rounded flex-1",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-      <div
-        className={classNames(
-          "rounded flex-1",
-          isDark ? "bg-slate-700" : "bg-gray-200"
-        )}
-      />
-    </div>
-    <div
-      className={classNames(
-        "rounded-sm mt-6 mb-2 w-12 h-3",
-        isDark ? "bg-slate-700" : "bg-gray-200"
-      )}
-    />
-    <div
-      className={classNames(
-        "rounded-sm mb-2 w-full h-10",
-        isDark ? "bg-slate-700" : "bg-gray-200"
-      )}
-    />
+    {wallets ? (
+      <div className="flex justify-between gap-2 h-12">
+        <div
+          className={classNames(
+            "rounded flex-1",
+            isDark ? "bg-slate-700" : "bg-gray-200"
+          )}
+        />
+        <div
+          className={classNames(
+            "rounded flex-1",
+            isDark ? "bg-slate-700" : "bg-gray-200"
+          )}
+        />
+        <div
+          className={classNames(
+            "rounded flex-1",
+            isDark ? "bg-slate-700" : "bg-gray-200"
+          )}
+        />
+      </div>
+    ) : null}
+    {shipping ? (
+      <>
+        <div
+          className={classNames(
+            "rounded-sm mt-6 mb-2 w-12 h-3",
+            isDark ? "bg-slate-700" : "bg-gray-200"
+          )}
+        />
+
+        <div
+          className={classNames(
+            "rounded-sm mb-2 w-full h-10",
+            isDark ? "bg-slate-700" : "bg-gray-200"
+          )}
+        />
+      </>
+    ) : null}
     <div
       className={classNames(
         "rounded-sm mt-6 mb-2 w-12 h-3",
@@ -73,7 +80,11 @@ const PaymentBuilder = ({ fullScreen }) => {
   if (!fullScreen) {
     return (
       <div className="mt-8">
-        <WireframeBlocks isDark={isDark} />
+        <WireframeBlocks
+          isDark={isDark}
+          wallets={theme.wallets}
+          shipping={theme.shipping}
+        />
         <Button
           className="mt-8 text-sm py-3 w-full"
           label="Pay Now"

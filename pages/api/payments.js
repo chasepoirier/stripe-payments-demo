@@ -21,14 +21,24 @@ export default async function handler(req, res) {
 
       try {
         const order = await stripe.orders.create({
-          // line_items: [{ product: "prod_LqSb8aqKDehFd7", quantity: 1 }],
           line_items,
-          payment: { settings: { payment_method_types: ["card"] } },
+          payment: {
+            settings: {
+              payment_method_types: [
+                "card",
+                "afterpay_clearpay",
+                "customer_balance",
+              ],
+            },
+          },
+          automatic_tax: { enabled: true },
           expand: ["line_items"],
           currency: "usd",
         });
 
-        res.status(200).json({ clientSecret: order.client_secret });
+        res
+          .status(200)
+          .json({ clientSecret: order.client_secret, items: order });
       } catch (error) {
         return res.status(400).json({ error: error.message });
       }

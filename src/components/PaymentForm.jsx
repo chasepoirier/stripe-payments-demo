@@ -9,7 +9,18 @@ const PaymentForm = () => {
 
   return (
     <form>
-      <PaymentElement options={{}} />
+      <PaymentElement
+        options={{
+          business: theme.name,
+          fields: {
+            billingDetails: theme.shipping ? "auto" : "never",
+          },
+          wallets: {
+            applePay: theme.wallets ? "auto" : "never",
+            googlePay: theme.wallets ? "auto" : "never",
+          },
+        }}
+      />
       <Button
         className={classNames("mt-8 text-sm py-3 w-full")}
         label="Pay Now"

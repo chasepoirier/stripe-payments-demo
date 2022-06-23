@@ -31,6 +31,9 @@ const BrandOptions = () => {
         label="Spacing"
         onChange={(spacing) => updateTheme({ spacing })}
         value={theme.spacing}
+        min={0}
+        max={12}
+        step={1}
       />
       <ColorInput
         defaultColor={theme.primaryColor}
@@ -44,6 +47,9 @@ const BrandOptions = () => {
         value={theme.borderRadius}
         className="w-[28%]"
         label="Border Radius"
+        step={2}
+        min={0}
+        max={30}
       />
       <ColorInput
         defaultColor={theme.backgroundColor}
@@ -57,6 +63,9 @@ const BrandOptions = () => {
         value={theme.fontSize}
         className="w-[28%]"
         label="Font Size"
+        step={1}
+        min={8}
+        max={30}
       />
     </div>
   );
