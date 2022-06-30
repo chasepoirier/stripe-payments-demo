@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PaymentForm from "./PaymentForm";
-import { STRIPE_PK } from "../constants";
+import { FONTS, STRIPE_PK } from "../constants";
 import { createOrder } from "../api/payments";
 import useTheme from "../hooks/useTheme";
 import useCart from "../hooks/useCart";
@@ -21,6 +21,7 @@ const PaymentWrapper = () => {
   const [error, setError] = React.useState("");
 
   const options = {
+    fonts: FONTS,
     clientSecret,
     appearance: {
       variables: {

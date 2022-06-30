@@ -1,5 +1,5 @@
 import React from "react";
-import { THEME } from "../constants";
+import { FONTS, THEME } from "../constants";
 
 const initialTheme = {
   scheme: THEME.LIGHT,
@@ -13,7 +13,7 @@ const initialTheme = {
   primaryColor: "#5469D4",
   backgroundColor: "#fff",
   textColor: "#222222",
-  fontFamily: "open-sans",
+  fontFamily: FONTS[0].name,
   spacing: 4,
   borderRadius: 4,
   fontSize: 16,
@@ -21,7 +21,6 @@ const initialTheme = {
 };
 
 const reducer = (state, action) => {
-  console.log(state, action);
   switch (action.type) {
     case "update":
       return { ...state, ...action.payload };

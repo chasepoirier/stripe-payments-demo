@@ -88,7 +88,10 @@ const PaymentBuilder = ({ fullScreen }) => {
         <Button
           className="mt-8 text-sm py-3 w-full"
           label="Pay Now"
-          style={{ backgroundColor: theme.primaryColor }}
+          style={{
+            backgroundColor: theme.primaryColor,
+            fontFamily: theme.fontFamily,
+          }}
         />
       </div>
     );

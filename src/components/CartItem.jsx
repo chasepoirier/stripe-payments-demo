@@ -4,6 +4,7 @@ import { classNames, formatDollars } from "../helpers";
 import { Dialog, Transition } from "@headlessui/react";
 import Modal from "./Modal";
 import TextInput from "./TextInput.jsx";
+import useTheme from "../hooks/useTheme";
 
 const CartItem = ({
   image,
@@ -18,7 +19,9 @@ const CartItem = ({
   const [open, setOpen] = React.useState(false);
   const [newName, setName] = React.useState(title);
   const [newImage, setImage] = React.useState(image);
-
+  const [theme] = useTheme();
+  const { fontFamily, textColor } = theme;
+  const color = textColor;
   const toggleModal = () => !readOnly && setOpen(!open);
 
   return (
@@ -82,8 +85,11 @@ const CartItem = ({
             className="rounded"
           />
           <div>
-            <div>{title}</div>
-            <div className="text-sm font-light">
+            <div style={{ fontFamily, color }}>{title}</div>
+            <div
+              style={{ fontFamily, color, opacity: 0.8 }}
+              className="text-sm font-light"
+            >
               {formatDollars(price / 100)}
             </div>
           </div>

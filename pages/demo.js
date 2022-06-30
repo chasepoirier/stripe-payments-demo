@@ -6,6 +6,8 @@ import DemoScreen from "../src/components/DemoScreen";
 import Header from "../src/components/Header";
 import LowerHeader from "../src/components/LowerHeader";
 import SwitchInput from "../src/components/SwitchInput";
+import TestCardsModal from "../src/components/TestCardsModal";
+import PromoCodeModal from "../src/components/PromoCodeModal";
 import UpperHeader from "../src/components/UpperHeader";
 
 export default function Demo() {
@@ -18,6 +20,8 @@ export default function Demo() {
       <div className="flex-1 bg-gray-100 flex justify-center py-12">
         <DemoScreen fullScreen />
       </div>
+      <TestCardsModal />
+      {/* <PromoCodeModal /> */}
     </div>
   );
 }

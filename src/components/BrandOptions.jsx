@@ -5,7 +5,7 @@ import SelectInput from "./SelectInput";
 import SwitchInput from "./SwitchInput";
 import ThemeInput from "./ThemeInput";
 import useTheme from "../hooks/useTheme";
-import { THEME } from "../constants";
+import { FONTS, THEME } from "../constants";
 
 const BrandOptions = () => {
   const [theme, updateTheme] = useTheme();
@@ -41,7 +41,15 @@ const BrandOptions = () => {
         label="Primary Color"
         onChange={(hex) => updateTheme({ primaryColor: hex })}
       />
-      <SelectInput className="w-[28%]" label="Font Family" />
+      <SelectInput
+        className="w-[28%]"
+        label="Font Family"
+        options={FONTS.map((font) => ({ label: font.name, value: font.name }))}
+        selected={{ label: theme.fontFamily, value: theme.fontFamily }}
+        onChange={(option) => {
+          updateTheme({ fontFamily: option.value });
+        }}
+      />
       <SliderInput
         onChange={(borderRadius) => updateTheme({ borderRadius })}
         value={theme.borderRadius}

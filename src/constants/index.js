@@ -6,3 +6,26 @@ export const THEME = {
   LIGHT: "LIGHT",
   DARK: "DARK",
 };
+
+export const FONTS = [
+  {
+    cssSrc: "https://fonts.googleapis.com/css?family=Open+Sans",
+    name: "Open Sans",
+  },
+  {
+    cssSrc: "https://fonts.googleapis.com/css?family=Roboto",
+    name: "Roboto",
+  },
+  {
+    cssSrc: "https://fonts.googleapis.com/css?family=Gantari",
+    name: "Gantari",
+  },
+  {
+    cssSrc: "https://fonts.googleapis.com/css?family=Noto+Serif",
+    name: "Noto Serif",
+  },
+  {
+    cssSrc: "https://fonts.googleapis.com/css?family=Lora",
+    name: "Lora",
+  },
+];
