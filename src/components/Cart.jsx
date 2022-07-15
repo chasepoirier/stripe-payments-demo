@@ -27,11 +27,11 @@ const Cart = ({ readOnly }) => {
   };
 
   const subTotal = React.useMemo(() => {
-    return cart.order.amount_subtotal / 100;
+    return (cart.order?.amount_subtotal || 100) / 100;
   }, [items, cart]);
 
   const tax = React.useMemo(() => {
-    return cart.order.total_details.amount_tax / 100;
+    return (cart.order?.total_details.amount_tax || 100) / 100;
   }, [items, cart]);
 
   return (
@@ -69,7 +69,7 @@ const Cart = ({ readOnly }) => {
           Total
         </div>
         <div style={{ fontFamily, color }} className="text-sm text-light">
-          {formatDollars(cart.order.amount_total / 100)}
+          {formatDollars((cart.order?.amount_total || 100) / 100)}
         </div>
       </div>
     </div>
