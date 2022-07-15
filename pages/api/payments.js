@@ -1,18 +1,44 @@
-import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.STRIPE_SK, {
-  apiVersion: "2020-08-27; orders_beta=v3;",
-});
+import { initStripe } from "../../src/helpers";
 
 export default async function handler(req, res) {
-  const {
-    query: { id, name },
-    method,
-  } = req;
+  const { method } = req;
 
   switch (method) {
-    case "POST":
-      const { line_items } = JSON.parse(req.body);
+    case "PATCH": {
+      const {
+        id,
+        data: { zip, coupon },
+        stripeSk,
+      } = JSON.parse(req.body);
+      const stripe = initStripe(stripeSk);
+
+      try {
+        const order = await stripe.orders.update(id, {
+          discounts: [{ coupon }],
+          expand: ["line_items"],
+          billing_details: {
+            address: {
+              postal_code: zip || "90209",
+              country: "US",
+            },
+          },
+        });
+
+        res.status(200).json({ clientSecret: order.client_secret, order });
+      } catch (error) {
+        return res.status(400).json({ error: error.message });
+      }
+      break;
+    }
+    case "POST": {
+      const { line_items, stripeSk, zip, coupon } = JSON.parse(req.body);
+
+      const stripe = initStripe(stripeSk);
+
+      if (!stripeSk)
+        return res
+          .status(400)
+          .json({ error: "You must specify a valid Stripe SK" });
 
       if (!line_items || !line_items.length)
         return res
@@ -31,18 +57,24 @@ export default async function handler(req, res) {
               ],
             },
           },
+          discounts: [{ coupon }],
           automatic_tax: { enabled: true },
           expand: ["line_items"],
           currency: "usd",
+          billing_details: {
+            address: {
+              postal_code: zip || "90209",
+              country: "US",
+            },
+          },
         });
 
-        res
-          .status(200)
-          .json({ clientSecret: order.client_secret, items: order });
+        res.status(200).json({ clientSecret: order.client_secret, order });
       } catch (error) {
         return res.status(400).json({ error: error.message });
       }
       break;
+    }
     default:
       res.setHeader("Allow", ["POST"]);
       res.status(405).end(`Method ${method} Not Allowed`);

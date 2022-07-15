@@ -1,6 +1,7 @@
 import React from "react";
 import { THEME } from "../constants";
 import { classNames } from "../helpers";
+import useCart from "../hooks/useCart";
 import useTheme from "../hooks/useTheme";
 import Cart from "./Cart";
 import InputLogo from "./InputLogo";
@@ -10,6 +11,7 @@ import PaymentWrapper from "./PaymentWrapper";
 
 const DemoScreen = ({ fullScreen }) => {
   const [theme] = useTheme();
+  const [{ loaded }] = useCart();
 
   const isDark = theme.scheme === THEME.DARK;
 
@@ -74,10 +76,12 @@ const DemoScreen = ({ fullScreen }) => {
             isDark ? "border-slate-500" : "border-gray-100"
           )}
         >
-          <div className="flex items-center gap-3">
-            <InputLogo readOnly={fullScreen} />
-            <InputName readOnly={fullScreen} />
-          </div>
+          {loaded ? (
+            <div className="flex items-center gap-3">
+              <InputLogo readOnly={fullScreen} />
+              <InputName readOnly={fullScreen} />
+            </div>
+          ) : null}
           <PaymentBuilder fullScreen={fullScreen} />
         </div>
         <div
@@ -86,7 +90,7 @@ const DemoScreen = ({ fullScreen }) => {
             isDark ? "bg-slate-700" : "bg-gray-50"
           )}
         >
-          <Cart readOnly={fullScreen} />
+          {loaded ? <Cart readOnly={fullScreen} /> : null}
         </div>
       </div>
     </div>

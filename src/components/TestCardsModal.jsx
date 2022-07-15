@@ -4,6 +4,8 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   CheckIcon,
+  ShieldCheckIcon,
+  XIcon,
 } from "@heroicons/react/solid";
 import { useState, Fragment } from "react";
 import CopyableItem from "./CopyableItem";
@@ -13,8 +15,8 @@ const TestCardsModal = () => {
 
   return (
     <div
-      className={`"shadow-lg absolute bg-slate-800 bottom-0 right-20 p-8 pt-6 rounded-t-lg w-[300px] transition-transform ${
-        isShowing ? "translate-y-0" : "translate-y-[270px]"
+      className={`"shadow-lg absolute bg-slate-800 bottom-0 right-[40px] p-6 pt-5 rounded-t-lg w-[300px] transition-transform ${
+        isShowing ? "translate-y-0" : "translate-y-[260px]"
       }`}
     >
       <div
@@ -50,7 +52,7 @@ const TestCardsModal = () => {
           value="4242424242424242"
         />
         <CopyableItem
-          Icon={CheckIcon}
+          Icon={ShieldCheckIcon}
           RightComponent={
             <div className="flex items-center gap-1">
               <div className="flex gap-[2px]">
@@ -67,7 +69,7 @@ const TestCardsModal = () => {
           value="4000000000003220"
         />
         <CopyableItem
-          Icon={CheckIcon}
+          Icon={XIcon}
           RightComponent={
             <div className="flex items-center gap-1">
               <div className="flex gap-[2px]">

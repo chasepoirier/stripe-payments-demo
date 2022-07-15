@@ -5,7 +5,7 @@ const InputName = ({ readOnly }) => {
   const [theme, updateTheme] = useTheme();
 
   if (readOnly) {
-    return <div>{theme.brandName}</div>;
+    return <div style={{ color: theme.textColor }}>{theme.brandName}</div>;
   }
   return (
     <div>

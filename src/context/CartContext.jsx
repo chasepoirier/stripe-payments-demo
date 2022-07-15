@@ -1,6 +1,10 @@
 import React from "react";
+import { STRIPE_PK, STRIPE_SK } from "../constants";
 
 const initialCart = {
+  initialized: false,
+  loaded: true,
+  order: null,
   items: [
     {
       id: "prod_LqSb8aqKDehFd7",
@@ -19,6 +23,12 @@ const initialCart = {
       price: 6500,
     },
   ],
+  coupons: [
+    { name: "25OFF", valid: true, id: "RZCsQy63" },
+    { name: "EXPIRED", valid: false, id: "QIBUYvWC" },
+  ],
+  pk: "",
+  sk: "",
 };
 
 const reducer = (state, action) => {
@@ -39,6 +49,23 @@ const reducer = (state, action) => {
           },
           ...state.items.slice(index + 1),
         ],
+      };
+    }
+    case "set_loaded": {
+      const {
+        payload: { loaded },
+      } = action;
+
+      return {
+        ...state,
+        loaded,
+      };
+    }
+    case "init": {
+      return {
+        ...state,
+        ...action.payload,
+        initialized: true,
       };
     }
     default:

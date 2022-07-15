@@ -8,5 +8,5 @@ export default function useCart() {
     dispatch({ type: "update_item", payload: { id, fields } });
   };
 
-  return [cart, updateItem];
+  return [cart, updateItem, dispatch];
 }

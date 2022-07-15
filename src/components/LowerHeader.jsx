@@ -5,6 +5,14 @@ import { useRouter } from "next/router";
 const LowerHeader = ({ hideBtn, children, label, stepNum, href }) => {
   const router = useRouter();
 
+  const queryParams = React.useMemo(() => {
+    const params = router.asPath.split("?");
+
+    if (params.length > 1) return "?" + params[1];
+
+    return "";
+  }, [router]);
+
   return (
     <div className="mt-12">
       <h1 className="text-xl mb-2">Explore Payment Element</h1>
@@ -20,7 +28,7 @@ const LowerHeader = ({ hideBtn, children, label, stepNum, href }) => {
           </div>
         </div>
         {children}
-        {!hideBtn && <Button href={href} label="Next" />}
+        {!hideBtn && <Button href={href + queryParams} label="Next" />}
       </div>
     </div>
   );

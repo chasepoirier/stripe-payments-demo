@@ -1,9 +1,12 @@
+import { useRouter } from "next/router";
 import React from "react";
 import useTheme from "../hooks/useTheme";
 import SwitchInput from "./SwitchInput";
 
 const ConfigureOptions = () => {
   const [theme, updateTheme] = useTheme();
+  const { push } = useRouter();
+
   return (
     <div className="flex gap-10 gap-y-3 flex-wrap justify-start max-w-2xl">
       <SwitchInput

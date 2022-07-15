@@ -27,15 +27,12 @@ const Cart = ({ readOnly }) => {
   };
 
   const subTotal = React.useMemo(() => {
-    return items.reduce(
-      (total, item) => total + (item.price / 100) * item.quantity,
-      0
-    );
-  }, [items]);
+    return cart.order.amount_subtotal / 100;
+  }, [items, cart]);
 
   const tax = React.useMemo(() => {
-    return subTotal * TAX_RATE;
-  }, [items]);
+    return cart.order.total_details.amount_tax / 100;
+  }, [items, cart]);
 
   return (
     <div>
@@ -65,14 +62,14 @@ const Cart = ({ readOnly }) => {
           {formatDollars(tax)}
         </div>
       </div>
-      {theme.promoCode ? <PromoCode readOnly /> : null}
+      {theme.promoCode ? <PromoCode readOnly={!readOnly} /> : null}
       <div className="h-[1px] w-full bg-gray-200 my-6" />
       <div className="my-1 flex justify-between items-center mb-32">
         <div style={{ fontFamily, color }} className="text-sm">
           Total
         </div>
         <div style={{ fontFamily, color }} className="text-sm text-light">
-          {formatDollars(subTotal + tax)}
+          {formatDollars(cart.order.amount_total / 100)}
         </div>
       </div>
     </div>

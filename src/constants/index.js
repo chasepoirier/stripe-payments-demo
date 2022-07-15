@@ -1,6 +1,8 @@
 export const DOCS_LINK = "https://stripe.com/docs/payments/payment-element";
 export const STRIPE_PK =
   "pk_test_51KtdIzA5RfiywdnC8PsaBh7MUsq8PjD19sy320hqPe0qjUi6v4GnbJ6SO9uuHZzghj0cvtKGRZxK8UOzQC9bdYZf004BMzFp89";
+export const STRIPE_SK =
+  "sk_test_51KtdIzA5RfiywdnC2dXbiabjqMfELGBpmVqUvhNUlfZPdPLBi4p6Cx04fc1g4RkwZvaZMF468tuXIFD0QNmKizIO00RgZ3WsEw";
 
 export const THEME = {
   LIGHT: "LIGHT",
@@ -10,7 +12,7 @@ export const THEME = {
 export const FONTS = [
   {
     cssSrc: "https://fonts.googleapis.com/css?family=Open+Sans",
-    name: "Open Sans",
+    name: "Open+Sans",
   },
   {
     cssSrc: "https://fonts.googleapis.com/css?family=Roboto",
@@ -22,7 +24,7 @@ export const FONTS = [
   },
   {
     cssSrc: "https://fonts.googleapis.com/css?family=Noto+Serif",
-    name: "Noto Serif",
+    name: "Noto+Serif",
   },
   {
     cssSrc: "https://fonts.googleapis.com/css?family=Lora",

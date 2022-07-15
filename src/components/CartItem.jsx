@@ -104,7 +104,12 @@ const CartItem = ({
             >
               <img src="/caret-up.svg" alt="arrow up" />
             </div>
-            <div className="text-sm font-light bg-gray-100 text-center">
+            <div
+              className={classNames(
+                "text-sm font-light bg-gray-100 text-center",
+                { color }
+              )}
+            >
               {quantity}
             </div>
             <div

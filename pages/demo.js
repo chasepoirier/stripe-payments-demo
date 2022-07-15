@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Button from "../src/components/Button";
@@ -9,19 +10,39 @@ import SwitchInput from "../src/components/SwitchInput";
 import TestCardsModal from "../src/components/TestCardsModal";
 import PromoCodeModal from "../src/components/PromoCodeModal";
 import UpperHeader from "../src/components/UpperHeader";
+import useTheme from "../src/hooks/useTheme";
+import InitStripe from "../src/components/InitStripe";
+import useUpdateUrl from "../src/hooks/useUpdateUrl";
+import useCart from "../src/hooks/useCart";
 
 export default function Demo() {
+  const [theme, updateCart] = useTheme();
+  const [cart, _, cartDispatch] = useCart();
+  const params = useUpdateUrl();
+
+  React.useEffect(() => {
+    updateCart(params);
+
+    if (cart.sk !== params.sk) {
+      cartDispatch({ type: "init", payload: { sk: params.sk, pk: params.pk } });
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header>
-        <UpperHeader />
-        <LowerHeader label="Try it out" stepNum={3} hideBtn></LowerHeader>
-      </Header>
-      <div className="flex-1 bg-gray-100 flex justify-center py-12">
-        <DemoScreen fullScreen />
-      </div>
+    <div className="h-screen relative overflow-hidden">
       <TestCardsModal />
-      {/* <PromoCodeModal /> */}
+      {theme.promoCode ? <PromoCodeModal /> : null}
+
+      <div className="min-h-screen flex flex-col">
+        <InitStripe />
+        <Header>
+          <UpperHeader />
+          <LowerHeader label="Try it out" stepNum={3} hideBtn></LowerHeader>
+        </Header>
+        <div className="flex-1 bg-gray-100 flex justify-center py-12">
+          <DemoScreen fullScreen />
+        </div>
+      </div>
     </div>
   );
 }
