@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import ReactSlider from "react-slider";
+import dynamic from "next/dynamic";
 import { classNames } from "../helpers";
+
+const ReactSlider = dynamic(() => import("react-slider"), { ssr: false });
 
 const SliderInput = ({ value, onChange, label, className, min, max, step }) => {
   return (

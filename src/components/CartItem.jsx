@@ -20,7 +20,7 @@ const CartItem = ({
   const [newName, setName] = React.useState(title);
   const [newImage, setImage] = React.useState(image);
   const [theme] = useTheme();
-  const { fontFamily, textColor } = theme;
+  const { fontFamily, textColor, fontSize } = theme;
   const color = textColor;
   const toggleModal = () => !readOnly && setOpen(!open);
 
@@ -85,9 +85,16 @@ const CartItem = ({
             className="rounded"
           />
           <div>
-            <div style={{ fontFamily, color }}>{title}</div>
+            <div style={{ fontFamily, color, fontSize: fontSize * 1.1 }}>
+              {title}
+            </div>
             <div
-              style={{ fontFamily, color, opacity: 0.8 }}
+              style={{
+                fontFamily,
+                color,
+                opacity: 0.8,
+                fontSize: fontSize * 0.95,
+              }}
               className="text-sm font-light"
             >
               {formatDollars(price / 100)}

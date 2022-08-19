@@ -25,7 +25,7 @@ export default function useUpdateUrl(baseUrl) {
         ...encodedParams,
         logo: encodedParams.logo ? decodeURIComponent(encodedParams.logo) : "",
         brandName: encodedParams.brandName
-          ? decodeURIComponent(encodedParams.brandName)
+          ? decodeURIComponent(encodedParams.brandName).replace("+", " ")
           : "",
         fontFamily: encodedParams.fontFamily
           ? decodeURIComponent(encodedParams.fontFamily)

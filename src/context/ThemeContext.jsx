@@ -12,15 +12,16 @@ const initialTheme = {
   brandName: "",
   primaryColor: "#5469D4",
   backgroundColor: "#fff",
-  textColor: "#222222",
+  textColor: "#444",
   fontFamily: FONTS[0].name,
-  spacing: 4,
-  borderRadius: 4,
-  fontSize: 16,
+  spacing: 3,
+  borderRadius: 10,
+  fontSize: 14,
   dispatch: () => {},
 };
 
 const reducer = (state, action) => {
+  console.log("caled");
   switch (action.type) {
     case "update":
       return { ...state, ...action.payload };

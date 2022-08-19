@@ -12,7 +12,7 @@ const Cart = ({ readOnly }) => {
   const { items } = cart;
   const [theme] = useTheme();
   const [loading, setLoading] = React.useState(true);
-  const { fontFamily, textColor } = theme;
+  const { fontFamily, textColor, fontSize } = theme;
   const color = textColor;
 
   const onChangeQuantity = (amount, id) => {
@@ -47,28 +47,40 @@ const Cart = ({ readOnly }) => {
       ))}
       <div className="h-[1px] w-full bg-gray-200 my-6" />
       <div className="my-1 flex justify-between items-center">
-        <div style={{ fontFamily, color }} className="text-sm">
+        <div style={{ fontFamily, color, fontSize }} className="text-sm">
           Subtotal
         </div>
-        <div style={{ fontFamily, color }} className="text-sm font-light">
+        <div
+          style={{ fontFamily, color, fontSize }}
+          className="text-sm font-light"
+        >
           {formatDollars(subTotal)}
         </div>
       </div>
       <div className="my-2 flex justify-between items-center">
-        <div style={{ fontFamily, color }} className="text-sm">
+        <div style={{ fontFamily, color, fontSize }} className="text-sm">
           Tax Estimate
         </div>
-        <div style={{ fontFamily, color }} className="text-sm font-light">
+        <div
+          style={{ fontFamily, color, fontSize }}
+          className="text-sm font-light"
+        >
           {formatDollars(tax)}
         </div>
       </div>
       {theme.promoCode ? <PromoCode readOnly={!readOnly} /> : null}
       <div className="h-[1px] w-full bg-gray-200 my-6" />
       <div className="my-1 flex justify-between items-center mb-32">
-        <div style={{ fontFamily, color }} className="text-sm">
+        <div
+          style={{ fontFamily, color, fontSize: fontSize * 1.1 }}
+          className="text-sm"
+        >
           Total
         </div>
-        <div style={{ fontFamily, color }} className="text-sm text-light">
+        <div
+          style={{ fontFamily, color, fontSize: fontSize * 1.1 }}
+          className="text-sm text-light"
+        >
           {formatDollars((cart.order?.amount_total || 100) / 100)}
         </div>
       </div>

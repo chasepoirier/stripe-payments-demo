@@ -65,7 +65,13 @@ const PaymentForm = () => {
       <Button
         className={classNames("mt-8 text-sm py-3 w-full")}
         label={loading ? "Submitting..." : "Pay Now"}
-        style={{ backgroundColor: theme.primaryColor }}
+        style={{
+          backgroundColor: theme.primaryColor,
+          borderRadius: theme.borderRadius,
+          fontFamily: theme.fontFamily,
+          fontSize: theme.fontSize,
+          padding: theme.spacing * 4,
+        }}
         onClick={onSubmit}
       />
     </form>
