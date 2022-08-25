@@ -8,34 +8,36 @@ import InputLogo from "./InputLogo";
 import InputName from "./InputName";
 import PaymentBuilder from "./PaymentBuilder";
 import PaymentWrapper from "./PaymentWrapper";
-import { ArrowsExpandIcon } from "@heroicons/react/solid";
+import { ExternalLinkIcon } from "@heroicons/react/solid";
 import { ArrowsExpandIcon as ArrowsExpandIconOutline } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
 
 const DemoScreen = ({ fullScreen }) => {
   const [theme] = useTheme();
   const [{ loaded }] = useCart();
-
+  const { push, asPath } = useRouter();
   const isDark = theme.scheme === THEME.DARK;
 
-  const [expanded, setExpanded] = useState(false);
+  const queryParams = React.useMemo(() => {
+    const params = asPath.split("?");
+
+    if (params.length > 1) return "?" + params[1];
+
+    return "";
+  }, []);
 
   return (
     <div
-      style={{ backgroundColor: expanded ? "rgba(0,0,0,.8)" : "transparent" }}
       className={classNames(
         "w-[95%] my-2 max-w-7xl transition-all",
-        !fullScreen && "max-w-5xl h-full my-12",
-        expanded
-          ? "w-full max-w-none h-full my-none absolute top-0 flex p-20 justify-center m-0"
-          : ""
+        !fullScreen && "max-w-5xl h-full my-12"
       )}
     >
       <div
         className={classNames(
           "w-full shadow-lg bg-white rounded-lg transition-all",
           !fullScreen && "max-w-5xl h-full my-12",
-          isDark ? "bg-slate-900" : "bg-white",
-          expanded && "w-[90%]"
+          isDark ? "bg-slate-900" : "bg-white"
         )}
       >
         <div
@@ -81,20 +83,12 @@ const DemoScreen = ({ fullScreen }) => {
             </div>
           </div>
           {fullScreen && (
-            <div onClick={() => setExpanded(!expanded)}>
-              {!expanded ? (
-                <ArrowsExpandIconOutline
-                  className="ml-3 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
-                  width={20}
-                  height={20}
-                />
-              ) : (
-                <ArrowsExpandIcon
-                  className="ml-3 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
-                  width={20}
-                  height={20}
-                />
-              )}
+            <div onClick={() => push("/view" + queryParams)}>
+              <ExternalLinkIcon
+                className="ml-3 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
+                width={20}
+                height={20}
+              />
             </div>
           )}
         </div>

@@ -1,10 +1,17 @@
+import Link from "next/link";
 import React from "react";
 import { DOCS_LINK } from "../constants";
 
 const UpperHeader = () => {
   return (
     <div className="flex flex-row justify-between items-center pt-5">
-      <img className="w-[70px] object-contain" src="/stripe-logo.svg" alt="" />
+      <Link href="/">
+        <img
+          className="w-[70px] object-contain cursor-pointer"
+          src="/stripe-logo.svg"
+          alt=""
+        />
+      </Link>
       <a
         href={DOCS_LINK}
         className="text-blue flex items-center text-sm"
